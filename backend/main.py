@@ -127,30 +127,36 @@ async def get_logger():
 
 @app.on_event("startup")
 async def startup_event():
-    logger = await get_logger()  # Логгер для стартапа
-    logger.info("Приложение стартует - создаем таблицы и сидируем данные")
-
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    
-    async with async_session() as session:
-        # Проверяем, что БД не пустая
-        stmt_check = select(func.count()).select_from(FDList)
-        result = await session.execute(stmt_check)
-        count = result.scalar_one()
-        
-        # Если да, то сидируем ее
-        if count == 0:
-            logger.info("БД пустая - выполняем сидирование из SQL скрипта")
-            # через SQL скрипт
-            async with aiofiles.open('/app/db/init_data.sql', mode='r') as f:  
-                sql_script = await f.read()
-            statements = sql_script.split(';')  # делаем парсинг файла
-            for statement in statements:
-                if statement.strip(): 
-                    await session.execute(text(statement))
-            await session.commit()
-            logger.info("Сидирование завершено успешно")
+    logger = await get_logger()
+    logger.info("Приложение стартует")
+    max_retries = 5
+    retry_interval = 5
+    for i in range(max_retries):
+        try:
+            async with engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
+            logger.info("Таблицы созданы")
+            async with async_session() as session:
+                stmt_check = select(func.count()).select_from(FDList)
+                result = await session.execute(stmt_check)
+                count = result.scalar_one()
+                if count == 0:
+                    logger.info("БД пустая - выполняем сидирование")
+                    async with aiofiles.open('/app/db/init_data.sql', mode='r') as f:
+                        sql_script = await f.read()
+                    statements = sql_script.split(';')
+                    for statement in statements:
+                        if statement.strip():
+                            await session.execute(text(statement))
+                    await session.commit()
+                    logger.info("Сидирование завершено")
+            break
+        except Exception as e:
+            if i == max_retries - 1:
+                logger.error(f"Не удалось подключиться к БД после {max_retries} попыток: {str(e)}")
+                raise
+            logger.warning(f"Попытка {i+1} не удалась, повтор через {retry_interval} сек: {str(e)}")
+            await sleep(retry_interval)
 
 # Почему-то с lifespan таблицы не создаются (?)
 

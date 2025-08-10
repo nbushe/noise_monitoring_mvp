@@ -37,8 +37,8 @@ services:
       - ./db:/app/db
       - ./logs:/logs
     working_dir: /app/backend
-    ports:
-      - "8000:8000"
+    # ports:
+    #   - "8000:8000"
     depends_on:
       - db
     environment:

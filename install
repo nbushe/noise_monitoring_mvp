@@ -20,4 +20,36 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo apt install -y python3 python3-pip
 pip install -r backend/requirements.txt
 
+# Проверка на root (или sudo)
+if [ "$EUID" -ne 0 ]; then
+  echo "⚠️  Этот скрипт требует прав sudo. Перезапуск с sudo..."
+  exec sudo bash "$0" "$@"
+  exit
+fi
+
+# Настройка DNS для Docker
+DNS_CONFIG='{"dns": ["8.8.8.8", "8.8.4.4"]}'
+
+echo "🌐 Настройка DNS в Docker: $DNS_CONFIG"
+echo "$DNS_CONFIG" > /etc/docker/daemon.json
+
+# Перезапуск Docker
+echo "🔄 Перезапуск Docker..."
+systemctl restart docker
+
+# Дополнительная проверка: включение сервиса Docker при загрузке
+systemctl enable docker 2>/dev/null || echo "⚠️  Docker уже включён в автозагрузку"
+
+# Тест DNS в контейнере
+echo "🧪 Тестируем DNS в контейнере..."
+if docker run --rm python:3.10-slim nslookup pypi.org > /dev/null 2>&1; then
+  echo "✅ DNS работает! Контейнер может разрешать доменные имена."
+else
+  echo "❌ Тест DNS не удался. Попробуйте перезагрузить систему или проверить сеть."
+  exit 1
+fi
+
+
+
 docker login
+

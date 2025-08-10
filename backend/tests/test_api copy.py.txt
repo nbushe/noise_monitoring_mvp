@@ -1,0 +1,131 @@
+# #####################################################
+# # Тесты бекенда
+# #####################################################
+
+# import pytest
+# from fastapi.testclient import TestClient
+# from main import app, get_db
+# from shared.models import Base
+# from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+# from sqlalchemy.orm import sessionmaker
+# from datetime import datetime
+
+# # Создаем тестовую баду данных в пямяти
+# TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
+
+# # Создаем движок и сессию
+# test_engine = create_async_engine(TEST_DB_URL)
+# test_async_session = sessionmaker(test_engine, class_=AsyncSession, expire_on_commit=False)
+
+# # Переопределяем зависимость для тестирования
+# async def override_get_db():
+#     async with test_async_session() as session:
+#         async with test_engine.begin() as conn:
+#             await conn.run_sync(Base.metadata.create_all)
+#         yield session
+#         async with test_engine.begin() as conn:
+#             await conn.run_sync(Base.metadata.drop_all)
+
+# app.dependency_overrides[get_db] = override_get_db
+
+# # Создаем тестового клиента
+# client = TestClient(app)
+
+# # Наши тесты
+
+# # Тест валидации
+# def test_validate_params():
+#     response = client.get("/api/noise-exceedances?start_datetime=invalid&end_datetime=2023-01-01T00:00:00Z&rssi_threshold=-60")
+#     assert response.status_code == 422  # Ошибка валидации
+
+# # Основной тест для проверки получения данных о превышениях шума
+# @pytest.mark.asyncio
+# async def test_get_exceedances():
+#     response = client.get("/api/noise-exceedances?start_datetime=2023-01-01T00:00:00Z&end_datetime=2023-01-01T00:05:00Z&rssi_threshold=-60")
+#     assert response.status_code == 200
+#     assert isinstance(response.json(), list)
+
+
+from fastapi import Depends
+import pytest
+from fastapi.testclient import TestClient
+from main import app, get_db
+from shared.models import Base, FDList, Measurements
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
+from datetime import datetime, timezone
+
+TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
+test_engine = create_async_engine(TEST_DB_URL)
+test_async_session = sessionmaker(test_engine, class_=AsyncSession, expire_on_commit=False)
+
+@pytest.fixture(scope="function")
+async def test_db_session():
+    async with test_async_session() as session:
+        async with test_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
+        # Insert test data
+        device_a = FDList(id=1, name="DeviceA", latitude=55.7558, longitude=37.6173)
+        device_b = FDList(id=2, name="DeviceB", latitude=40.7128, longitude=-74.0060)
+        session.add_all([device_a, device_b])
+        await session.commit()
+
+        timestamp1 = datetime(2023, 1, 1, 0, 0, tzinfo=timezone.utc)
+        timestamp2 = datetime(2023, 1, 1, 0, 1, tzinfo=timezone.utc)
+
+        meas1 = Measurements(device_id=1, timestamp=timestamp1, frequency=2400000000, rssi=-50)
+        meas2 = Measurements(device_id=1, timestamp=timestamp1, frequency=5200000000, rssi=-70)
+        meas3 = Measurements(device_id=1, timestamp=timestamp2, frequency=2400000000, rssi=-40)
+        meas4 = Measurements(device_id=2, timestamp=timestamp1, frequency=2400000000, rssi=-55)
+
+        session.add_all([meas1, meas2, meas3, meas4])
+        await session.commit()
+        yield session
+        async with test_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.drop_all)
+
+async def override_get_db(test_db_session: AsyncSession = Depends(test_db_session)):
+    yield test_db_session
+
+app.dependency_overrides[get_db] = override_get_db
+
+client = TestClient(app)
+
+def test_validate_invalid_datetime():
+    response = client.get("/api/noise-exceedances?start_datetime=invalid&end_datetime=2023-01-01T00:00:00Z&rssi_threshold=-60")
+    assert response.status_code == 422
+
+def test_validate_start_after_end():
+    response = client.get("/api/noise-exceedances?start_datetime=2023-01-01T00:05:00Z&end_datetime=2023-01-01T00:00:00Z&rssi_threshold=-60")
+    assert response.status_code == 422
+
+@pytest.mark.asyncio
+async def test_get_exceedances_with_data():
+    response = client.get("/api/noise-exceedances?start_datetime=2023-01-01T00:00:00Z&end_datetime=2023-01-01T00:05:00Z&rssi_threshold=-60")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    assert len(data) == 3  # DeviceA at t1 (-50), DeviceA at t2 (-40), DeviceB at t1 (-55)
+    expected = [
+        {"timestamp": "2023-01-01T00:00:00+00:00", "device_name": "DeviceA", "frequencies": [2400000000]},
+        {"timestamp": "2023-01-01T00:00:00+00:00", "device_name": "DeviceB", "frequencies": [2400000000]},
+        {"timestamp": "2023-01-01T00:01:00+00:00", "device_name": "DeviceA", "frequencies": [2400000000]}
+    ]
+    assert sorted(data, key=lambda x: (x['timestamp'], x['device_name'])) == expected
+
+@pytest.mark.asyncio
+async def test_get_exceedances_no_data():
+    response = client.get("/api/noise-exceedances?start_datetime=2023-01-01T00:00:00Z&end_datetime=2023-01-01T00:05:00Z&rssi_threshold=-30")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    assert len(data) == 0
+
+@pytest.mark.asyncio
+async def test_get_exceedances_multiple_freqs():
+    response = client.get("/api/noise-exceedances?start_datetime=2023-01-01T00:00:00Z&end_datetime=2023-01-01T00:00:00Z&rssi_threshold=-60")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) == 2
+    device_a = next(d for d in data if d['device_name'] == 'DeviceA')
+    assert sorted(device_a['frequencies']) == [2400000000]  # Only one exceeds

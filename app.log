@@ -1,0 +1,70 @@
+2025-08-10 18:13:32,784 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,784 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,784 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,784 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,784 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,792 - INFO - main - Запрос выполнен успешно, возвращено 6 записей
+2025-08-10 18:13:32,792 - INFO - main - Запрос выполнен успешно, возвращено 6 записей
+2025-08-10 18:13:32,792 - INFO - main - Запрос выполнен успешно, возвращено 6 записей
+2025-08-10 18:13:32,792 - INFO - main - Запрос выполнен успешно, возвращено 6 записей
+2025-08-10 18:13:32,792 - INFO - main - Запрос выполнен успешно, возвращено 6 записей
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,840 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -40} от testclient
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,843 - INFO - main - Запрос выполнен успешно, возвращено 2 записей
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,886 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 1, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,888 - INFO - main - Запрос выполнен успешно, возвращено 3 записей
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,914 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2024, 1, 1, 0, 0, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2024, 1, 1, 0, 5, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,916 - INFO - main - Запрос выполнен успешно, возвращено 0 записей
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,939 - INFO - main - Получен запрос: {'start_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'end_datetime': datetime.datetime(2023, 1, 1, 0, 3, tzinfo=TzInfo(UTC)), 'rssi_threshold': -50} от testclient
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей
+2025-08-10 18:13:32,941 - INFO - main - Запрос выполнен успешно, возвращено 1 записей

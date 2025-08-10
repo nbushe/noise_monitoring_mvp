@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:14
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init_data.sql:/docker-entrypoint-initdb.d/init_data.sql
+    environment:
+      POSTGRES_DB: noise_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    logging:  # Ограничиваем логи контейнера, чтоб диск не заполнялся
+      driver: "json-file"  # Стандартный драйвер для логов Docker
+      options:
+        max-size: "10m"  # Макс размер файла логов - 10 МБ
+        max-file: "5"  # Храним до 5 файлов ротации
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  shared:
+    build: ./shared
+    volumes:
+      - ./shared:/app/shared
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app/backend
+      - ./shared:/app/shared
+      - ./db:/app/db
+      - ./logs:/logs
+    working_dir: /app/backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_URL=postgresql+asyncpg://postgres:postgres@db:5432/noise_db
+      - PYTHONPATH=/app/backend:/app:$PYTHONPATH
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
+    
+
+volumes:
+  postgres_data:
+  logs:  # Volume для хранения логов приложения

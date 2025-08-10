@@ -1,0 +1,3 @@
+#!/bin/bash
+export PYTHONPATH=/app/backend:/app:$PYTHONPATH
+docker compose up

@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+pydantic
+python-dotenv
+pytest
+slowapi
+alembic
+aiofiles
+httpx
+aiosqlite
+pytest-asyncio

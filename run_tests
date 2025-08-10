@@ -1,0 +1,4 @@
+#!/bin/bash
+export PYTHONPATH=/app/backend:/app:$PYTHONPATH
+docker compose down --remove-orphans
+docker compose run -e PYTHONPATH=/app/backend:/app backend python -m pytest -v

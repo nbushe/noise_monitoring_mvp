@@ -17,7 +17,7 @@ sudo apt-get update
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-sudo apt install -y python3 python3-pip
+sudo apt install -y python3 python3-pip python3.12-venv
 
 VENV_DIR="venv"
 python3 -m venv "$VENV_DIR"

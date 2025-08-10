@@ -146,19 +146,19 @@ measurements
 Предполагается: Docker, Docker Compose, .env (DB_URL, API_PORT=8000, LOG_LEVEL=INFO) уже есть.
 
 1. Клонировать: `git clone <repo>`.
-2. Проверить .env: DB_URL=postgresql+asyncpg://user:pass@postgres:5432/db.
-3. Выполнить: `bash install.sh` (build, pip install).
+2. Выполнить: `cd <папка проекта>`
+3. Выполнить: `./install` (build, pip install).
 
 ## Запуск
 
-- Dev: `bash start_dev.sh` (docker-compose up).
-- Prod: `bash start_prod.sh` (up -d --scale backend=2).
+- Dev: `./start_dev` (docker-compose up).
+- Prod: `./start_prod` (up -d --scale backend=2).
 
 API: http://localhost:8000/api/noise-exceedances.
 
 ## Остановка
 
-`bash stop_prod.sh` (docker-compose down).
+`./stop_prod` (docker-compose down).
 
 ## Вход в контейнеры
 
@@ -174,7 +174,7 @@ API: http://localhost:8000/api/noise-exceedances.
 
 ## Тесты
 
-`bash run_tests.sh` (pytest в Docker). Покрытие: >75%. Проверки: валидация (422 на ошибки), API (ожидаемый JSON, сортировка частот), edge-cases (пустой ответ, future time).
+`./run_tests.sh` (pytest в Docker). Покрытие: >75%. Проверки: валидация (422 на ошибки), API (ожидаемый JSON, сортировка частот), edge-cases (пустой ответ, future time).
 
 ## Ограничения
 

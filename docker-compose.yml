@@ -1,6 +1,10 @@
+version: '3.8'
+
 services:
   db:
     image: postgres:14
+    networks:
+      - app-network
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/init_data.sql:/docker-entrypoint-initdb.d/init_data.sql
@@ -10,11 +14,11 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
-    logging:  # Ограничиваем логи контейнера, чтоб диск не заполнялся
-      driver: "json-file"  # Стандартный драйвер для логов Docker
+    logging:
+      driver: "json-file"
       options:
-        max-size: "10m"  # Макс размер файла логов - 10 МБ
-        max-file: "5"  # Храним до 5 файлов ротации
+        max-size: "10m"
+        max-file: "5"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -25,22 +29,20 @@ services:
     build: ./shared
     volumes:
       - ./shared:/app/shared
+    networks:
+      - app-network
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000  # Убран --reload для стабильности
     volumes:
       - ./backend:/app/backend
       - ./shared:/app/shared
       - ./db:/app/db
       - ./logs:/logs
     working_dir: /app/backend
-    # ports:
-    #   - "8000:8000"
-    depends_on:
-      - db
     environment:
       - DB_URL=postgresql+asyncpg://postgres:postgres@db:5432/noise_db
       - PYTHONPATH=/app/backend:/app:$PYTHONPATH
@@ -51,6 +53,10 @@ services:
         max-file: "5"
     expose:
       - "8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
 
   nginx:
     image: nginx:alpine
@@ -60,7 +66,8 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:
       - backend
-
+    networks:
+      - app-network
 
 networks:
   app-network:
@@ -68,4 +75,4 @@ networks:
 
 volumes:
   postgres_data:
-  logs:  # Volume для хранения логов приложения
+  logs:
